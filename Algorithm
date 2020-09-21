@@ -1,0 +1,96 @@
+ALGORITHM Sum_of_distinct_elemnts
+/*solution 1: Array */
+VAR
+    tab1: ARRAY_OF INTEGER[i]
+    tab2: ARRAY_OF INTEGER[j]
+    Var Sum, count1, count2=0
+    i= INTEGER
+    j= INTEGER
+BEGIN
+tab1:= {3,1,7,9}
+tab2:= {2,4,1,9,3}
+    FOR i FROM 0 TO tab1.length-1 STEP 1  DO
+    FOR j FROM 0 TO tab2.length-1 STEP 1  DO
+     IF (tab1[i]<>tab2[j]) THEN
+        count1:=count1+set1[i]
+     ELSE
+         break;
+     END_IF
+    
+    END_FOR
+    FOR i FROM 0 TO tab1.length-1 STEP 1  DO
+    FOR j FROM 0 TO tab2.length-1 STEP 1  DO
+        IF (tab1[i]<>tab2[j]) THEN
+            count2:=count2+set2[j]
+        END_IF
+    END_FOR
+    sum:= count1+count2
+        write(sum)
+END
+
+/*solution 2: h-tab */
+ALGORITHM distinct_elements
+VAR
+        tab1 : ARRAY_OF INTEGER[5];
+        tab2 : ARRAY_OF INTEGER[5];
+        htab : HASH_TABLE<INTEGER,INTEGER>;
+        i,j : INTEGER;
+        k : INTEGER := 1;
+BEGIN
+    tab1 := {3,1,7,9};
+    tab2 := {2,4,1,9,3};
+    FOR i FROM 0 TO tab1.length-1 STEP 1  DO
+        FOR j FROM 0 TO tab2.length-1 STEP 1  DO
+        IF (tab1[i] = tab2[j]) THEN
+            htab.insert(tab1[i],k+1) 
+        ELSE
+            htab.insert(set1[i],k) 
+        END_IF
+    END_FOR
+END
+/*example 2*/
+ALGORITHM overlapping_elements
+VAR
+    tab1 : ARRAY_OF INTEGER[4];
+    tab2 : ARRAY_OF INTEGER[4];
+    sum,count : INTEGER  := 0;
+    i,j : INTEGER;
+BEGIN
+   tab1 := {12,13,6,10};
+    tab2 := {13,10,16,15};
+FOR i FROM 0 TO tab1.length-1 STEP 1  DO
+        FOR j FROM 0 TO tab2.length-1 STEP 1  DO
+            IF (tab1[i] = tab2[j]) THEN
+                sum:=sum+tab1[i];
+            END_IF
+        END_FOR
+    END_FOR
+FOR j FROM 0 TO tab2.length-1 STEP 1  DO
+        FOR i FROM 0 TO tab2.length-1 STEP 1  DO
+            IF (tab1[i] = tab2[j]) THEN
+                sum:=sum+tab2[j];
+            END_IF
+        END_FOR
+    END_FOR
+    write(sum);
+END
+/* Solution2 h-tab */
+ALGORITHM overlapping_elements
+VAR
+        tab1 : ARRAY_OF INTEGER[4];
+        tab2 : ARRAY_OF INTEGER[4];
+        htab : HASH_TABLE<INTEGER,INTEGER>;
+        i,j : INTEGER;
+        k : INTEGER := 1;
+BEGIN
+    tab1 := {12,13,6,10};
+     tab2 := {13,10,16,15};
+    FOR i FROM 0 TO tab1.length-1 STEP 1  DO
+        FOR j FROM 0 TO tab2.length-1 STEP 1  DO
+        IF (tab1[i] = tab2[j]) THEN
+            htab.insert(tab1[i],k+1) 
+        ELSE
+            htab.insert(tab1[i],k) 
+        END_IF
+    END_FOR
+END
